@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Average Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 50px;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        .calculate-btn {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="input-group">
+    <input type="text" id="numberInput" placeholder="Enter numbers separated by ':'">
+    <button class="calculate-btn">Average</button>
+</div>
+
+<div id="result"></div>
+
+<script>
+    document.querySelector('.calculate-btn').onclick = function() {
+        let input = document.getElementById('numberInput').value;
+        let numbers = input.split(':').map(Number);
+        let validNumbers = numbers.filter(num => !isNaN(num));
+        
+        if (validNumbers.length === numbers.length) {
+            let sum = validNumbers.reduce((acc, num) => acc + num, 0);
+            let average = sum / validNumbers.length;
+            document.getElementById('result').innerText = 'Average: ' + average;
+        } else {
+            document.getElementById('result').innerText = 'Invalid input! Please enter valid numbers separated by ":".';
+        }
+    }
+</script>
+
+</body>
+</html>
